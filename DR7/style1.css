@@ -67,9 +67,12 @@ tr, td, p, th{
     width: 150px;
     padding: 10px;
     text-align: center;
+    border-radius: 10px;
+    font-weight: bold;
     background-color: blue;
     color: aliceblue;
     font-size: medium;
+
 }
 
 #map{
