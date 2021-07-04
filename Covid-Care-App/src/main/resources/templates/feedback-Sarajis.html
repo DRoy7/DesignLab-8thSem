@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback Form</title>
+</head>
+<body>
+    
+    <h1>Feedback Form</h1>
+    <div id="output"></div>
+    <div class="boxed">
+        <form onsubmit="return show()">
+            <p style="display: inline;padding-left: 10px;font-size: 25px;">First Name :</p>
+            <input type="text" name="fname" style="margin-left: 90px;padding-left: 5px; "id="fname" onclick="flush1()"> 
+            <p style="display: inline;font-size: 12px;color: red;"id ="falert"></p><br>
+            <p style="display: inline;padding-left: 10px;font-size: 25px;">Last Name :</p>
+            <input type="text" name = "lname" style="margin-left: 97px;padding-left: 5px;margin-top: 5px;" id = "lname" onclick="flush3()">
+            <p style="display: inline;font-size: 12px;color: red;" id="lalert"></p><br>
+            <p style="display: inline;padding-left: 10px;font-size: 25px;">Email :</p>
+            <input type="email" name ="email" style="margin-left: 161px;padding-left: 5px;margin-top: 5px;" id = "email" onclick="flush2()">
+            <p id="ealert" style="display: inline;font-size: 12px;color: red;"></p><br>
+            <p style="display: inline;padding-left: 10px;font-size: 25px;">Phone :</p>
+            <input type="tel" name ="phone"style="margin-left:155px;padding-left: 5px; margin-top:5px;"  id="phone" onclick="flush4()" >
+            <p style="display: inline;font-size: 12px;color: red;" id = "palert"></p><br>
+            <p style="display: inline;padding-left: 10px;font-size: 25px;">Hospital Name :</p>
+            <div id="select-div">
+                <select name="s1" class="select" id="hspnm" style="margin-left: 51px;margin-top: 5px;" onclick="flush6()">
+                    <option value="0" hidden selected id="select0">--Select--</option>
+                    <option value="1" class="opts">Kolkata Medical College and Hospital</option>
+                    <option value="2" class="opts">Asansol District Hospital</option>
+                    <option value="3" class="opts">Malda Medical College and Hospital</option>
+                    <option value="4" class="opts">Bankura Sammilani Medical College and Hospital</option>
+                    <option value="5" class="opts">North Bengal Medical College and Hospital </option>
+                    <option value="6" class="opts">Burdwan Medical College</option>
+                </select>
+            </div>
+            <p style="display: inline;font-size: 12px;color: red;" id = "halert"></p><br>
+            <p style="margin-top: 0px;padding-left: 10px;margin-top: 5px;font-size:25px;">Feedback:</p>
+            <div class="feedback">
+                <textarea name="fb" id="feedback" cols="42" rows="4" onclick="flush5()"></textarea>
+                <p style="display: inline;font-size: 12px;color: red;" id = "fbalert"></p><br>
+            </div>
+            <div id="sub">
+                <input type="submit" id="subbtn" value="Submit"></input>
+            </div>
+        </form>
+    </div>
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+         margin: 0;
+        }
+        h1{
+            text-align: center;
+            font-size: 50px;
+            font-family:cursive ;
+        }
+        body {
+          background-image: url('/Resources/background.jpeg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+        }
+        textarea{
+            resize: none;
+        }
+        .boxed{
+            display:flex;
+            border: 3px solid black;
+            text-align: left;
+            margin-left: 500px;
+            margin-right: 500px;
+            margin-top: 170px;
+            padding-top: 15px;
+            font-family: cursive;
+            background-color: #F8D210;
+            border-radius: 20px;
+            padding-right: 75px;
+        }
+        .feedback{
+            margin-left: 250px;
+            margin-top: -52px;
+            margin-bottom: 2px;
+        }
+        #subbtn{
+            margin: 0%;
+            padding: 10px;
+            background-color:aqua;
+            color: black;
+            font-family: cursive;
+            border-radius: 20px;
+            width: 200px;
+            height: 50px;
+            font-size: larger;
+            font-weight: bold;
+        }
+
+        #select-div{
+            margin: 0%;
+            padding: 0%;
+            display: inline-flex;
+        }
+
+        #sub{
+            position: relative;
+            margin: 0%;
+            padding: 10px;
+            padding-left: 300px;
+        }
+
+        .select{
+            color: gray;
+        }
+
+        .opts{
+            color:black;
+        }
+
+    </style>
+    <script>
+        function check() {
+            var valid = true;
+            var fname = document.getElementById("fname").value;
+            var lname = document.getElementById("lname").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var feedback = document.getElementById("feedback").value;
+            var select = document.getElementById("hspnm").value;
+
+            let n = email.search(/^[a-zA-Z0-9._]+@((gmail)|(outlook)|(hotmail)).com$/i);
+            let n1 = phone.search(/^[1-9]+[0-9]{9}$/);
+            //fname len
+            if (fname.length==0){
+                valid = false;
+                document.getElementById("falert").innerHTML = "<b>*Please Complete this field</b>";
+            }
+            else{
+                clearAll("falert");
+            }
+            if (lname.length==0){
+                valid = false;
+                document.getElementById("lalert").innerHTML = "<b>*Please Complete this field</b>";
+            }
+            else{
+                clearAll("lalert");
+            }
+            //email len
+            if(email.length==0){
+                valid = false;
+                document.getElementById("ealert").innerHTML ="<b>*Please Complete this field</b>";
+            }
+            // email pattern
+            else if(n==-1){
+                valid = false;
+                document.getElementById("ealert").innerHTML = "<b>*Please match the following pattern</b>";
+            }
+            else{
+                clearAll("ealert");
+            }
+            if(phone.length==0){
+                valid = false;
+                document.getElementById("palert").innerHTML ="<b>*Please Complete this field</b>";
+            }
+            // email pattern
+            else if(n1==-1){
+                valid = false;
+                document.getElementById("palert").innerHTML = "<b>*Please match the following pattern</b>";
+            }
+            else{
+                clearAll("palert");
+            }
+            if (feedback.length==0){
+                valid = false;
+                document.getElementById("fbalert").innerHTML = "<b>*Please Give a feedback</b>";
+            }
+            else{
+                clearAll("falert");
+            }
+            if(select == 0){
+                valid = false;
+                document.getElementById("halert").innerHTML = "<b>*Please Select a Option</b>";
+            }
+
+            // last line for preventing default action of refreshing
+            return valid;
+        }
+
+        function show(){
+            if(check()){
+                alert("Thank You For Your Feedback");
+            }
+
+            return false;
+        }
+
+        function clearAll(gid){
+            document.getElementById(gid).innerHTML = "";
+        }
+        function flush1(){
+            document.getElementById("falert").innerHTML = "";
+        }
+        function flush2(){
+            document.getElementById("ealert").innerHTML = "";
+        }
+        function flush3(){
+            document.getElementById("lalert").innerHTML = "";
+        }
+        function flush4(){
+            document.getElementById("palert").innerHTML = "";
+        }
+        function flush5(){
+            document.getElementById("fbalert").innerHTML ="";
+        }
+        function flush6(){
+            document.getElementById("halert").innerHTML = "";
+        }
+
+        /*
+        text-align: center;
+            margin-top: 5px;
+            border: none;
+            background: #00fff0;
+            color: black;
+            padding: 10px 0;
+            width: 50%;
+            font-size: 20px;
+            font-weight:600;
+            cursor: pointer;
+            margin-left: 300px;
+            font-family: cursive;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            */
+    </script>
+</body>
+</html>

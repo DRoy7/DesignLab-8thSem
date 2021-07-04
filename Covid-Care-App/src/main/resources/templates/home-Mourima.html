@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <title>Covid Care App</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    </head>
+    <body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarText">
+                    <a href="/about"><h3 class="text-light">Covid Care App</h3></a>
+              </div>
+              <span class="navbar-text float-end text-light">
+                <div id="clock"></div>
+              </span>
+            </div>
+          </nav>
+        <!--Middle Body part-->
+        <div>
+            <center id="t">WELCOME TO OUR COVID-CARE APP</center>
+            <p>Here you will get to know about the covid cases and hospitals treating covid patients all around West Bengal. Patients can also register themselves. </p>
+            <!-- for showing menus -->
+            <div class="card d-inline-flex" id="menu">
+              <ul id="menu-fonts" class="list-group list-group-flush gap-3 m-2 p-2">
+
+                <li class="list-group-item bg-warning text-light text-center rounded-3" title="For checking cases around all states of India">
+                  <a class="nav-link text-white" href="/cases">Cases</a>
+                </li>
+
+                <li class="list-group-item bg-success text-light text-center rounded-3" title="For registering in a hospital">
+                  <a  class="nav-link text-white" href="/registrations">Registration</a>
+                </li>
+                
+                <li class="list-group-item bg-danger text-light text-center rounded-3" title="For checking hospital availability">
+                  <a  class="nav-link text-white" href="/hospitals">Hospitals</a>
+                </li>
+                
+                <li class="list-group-item bg-dark text-light text-center rounded-3" title="About Us">
+                  <a  class="nav-link text-white" href="/about">About Us</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!--
+            
+          -->
+          <!--Image-->
+          <div class="d-inline-flex" id="img">
+
+          </div>
+          
+          <!-- Footer -->
+          <footer id="footer" class="bd-footer mt-5">
+            <div id="footer-note" class="container text-center">
+              <h5>&#169TEAM-1 &nbsp&nbsp&nbsp&nbsp::&nbsp&nbsp&nbsp&nbsp Design-Lab Project</h5>
+            </div>
+          </footer>
+
+          <style>
+            body {
+            background-size: 80% 90%;
+            height: 80%;
+            }
+
+            div center {
+            padding-top: 5% ;
+            font-size: 2.5em;
+            font-family: Roboto;
+            font-weight: bold;
+            color: #654321;
+            }
+
+            p {
+            padding-top: 1% ;
+            font-size: 1.5em;
+            text-align: center;
+            font-family:'Franklin Gothic Medium';
+            color: #026c45;
+            }
+
+            #navbar #id {
+                font-size: larger;
+            }
+
+            #menu{
+              margin-left: 30px;
+              width: 35rem;
+              background-color: rgba(233, 233, 233, 0.822);
+              border-radius: 20px;
+            }
+
+            #menu-fonts{
+              font-size: large;
+              font-weight: 500;
+            }
+
+            #footer{
+              height: 16%;
+              background-color: rgba(0, 0, 0, 0.2);
+            }
+            
+            #footer-note{
+              padding-top: 50px;
+            }
+
+            #img{
+              background-image: url('/Resources/who_covid-19-response.png'); 
+              background-repeat: no-repeat;
+              width: 845px;
+              height: 650px;
+              position: absolute;
+              top: 26px;
+              right: 0%;
+              z-index: -1;
+            }
+        </style>
+        <script>
+            var text=document.getElementById('t');
+            setInterval(change,500);
+            function change() {
+                var r=Math.floor(Math.random()*255);
+                var g=Math.floor(Math.random()*255);
+                var b=Math.floor(Math.random()*255);
+                text.style.color = "RGB("+r+","+g+","+b+")";
+            }
+            function digital(){
+                var date=new Date();
+                var h=date.getHours();
+                var m=date.getMinutes();
+                var s=date.getSeconds();
+                var mer="AM";
+                if(h==0) h=12;
+                if(h>12) {
+                    h=h-12;
+                    mer="PM";
+                }
+                h=(h<10)?"0"+h:h;
+                m=(m<10)?"0"+m:m;
+                s=(s<10)?"0"+s:s;
+                var time=h+":"+m+":"+s+" "+mer;
+                document.getElementById('clock').innerText=time;
+                setTimeout(digital,1000);
+            }
+            change();
+            digital();
+
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    </body>
+</html>

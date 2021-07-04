@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    
+	 <head>
+	   <title>Covid Care App</title>
+	   
+	   
+	   <style>
+        body {
+        background-image: url('/Resources/hosp5.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        }
+          h1 {text-align: center;}
+          h2 {text-align: center;}
+          table, th, td {
+          border: 1px solid red;
+        }
+        div {text-align:center;}
+        .buttons{
+          width: 235px;
+        }
+    </style>
+ 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	 </head>
+     <body>
+	    <h1 style="background-color:DodgerBlue;font-size:250%">Corona Dedicated Hospitals</h1>
+		<ul style="list-style-type: square;font-size:180%;">
+       <li style="color:#991f00"><b>The Dedicated COVID Hospitals are hospitals that offer comprehensive care primarily for those who have been clinically assigned as severe. These hospitals shall have fully equipped ICUs, ventilators and beds with assured oxygen support.</b></li>
+       <li style="color:#006600"><b>The Dedicated COVID Hospitals shall serve as referral centres for the Dedicated COVID Health Centres and the COVID Care Centres.</b></li>
+        
+        </ul>
+		<marquee style="color:#0000ff;font-size:170%;"><b>!!! Ambulance services from respective Hospitals are currently not available due to high demand for increase in number of Covid-19 cases !!!</b></marquee>
+    <!-- Register button-->
+    <div class="mx-5">
+      <a href="/register" class="mx-5"><button class="btn btn-danger btn-lg mx-3"><b> Register for Hospital </b> </button></a>
+      <a href="/home" class="mx-5"><button class="btn btn-warning btn-lg buttons mx-3"><b> Back to Home </b> </button></a>
+    </div>
+    <!-- Hospital table-->
+    <div class="container-fluid">
+    <h2 class="mt-5" style="color:#ff0000;font-size:200%;"><u>List of Hospitals</u></h2>
+		<table class="table table-dark table-bordered table-striped" style="width:100%">
+        <thead>
+          <tr style="background-color:#80ff00;;font-size:120%;" >
+            <th>Name of Hospital</th>
+            <th>State</th>
+            <th>District</th>
+            <th>No.of Covid Beds</th>
+            <th>Contact No</th>
+            <th>Address</th>
+          </tr> 
+        </thead>
+        <tbody>
+          <tr th:if="${hospitals.empty}">
+            <td colspan="4"> No Hospital Available </td>
+          </tr>
+          <tr th:each="Hospital : ${hospitals}">
+            <td th:text="${Hospital.name}">Name</td>
+            <td th:text="${Hospital.state}">State</td>
+            <td th:text="${Hospital.district}">District</td>
+            <td th:text="${Hospital.beds}">Beds</td>
+            <td th:text="${Hospital.contactNumber}">Contact No</td>
+            <td th:text="${Hospital.address}">Address</td>
+          </tr>
+        </tbody>
+       
+    </table>
+    </div>
+
+    <br>
+    </body>
+
+</html>
