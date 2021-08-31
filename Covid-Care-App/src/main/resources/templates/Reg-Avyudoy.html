@@ -1,9 +1,176 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Covid Care App</title>
-    </head>
-    <body>
-        <h1>Registration Form</h1>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/AFstyle.css">
+    <script src="/JS/Regis.js"></script>
+    <title>Covid Care App</title>
+</head>
+<body>
+
+<!--First Division-->
+    <div class="gg">
+        <h1>Hospital Bed Availability Status</h1>
+    </div>
+<!--Second Division-->
+    <div class="parag">
+        <p style="padding-left: 40px; padding-right: 40px;">It is an effort to capture the Status of Bed availability as frequently as possible. The Hospitals have been requested to update their vacancy status in the portal as frequently as possible and at least twice daily at 12 Noon and 6 PM. However, it is advised that you may call the hospital at the contact number of the hospital to get further details.
+
+            Covid positive patients can also avail telemedicine service ( telephonic consultation with a qualified govt. doctor) free of cost before trying for admission in a hospital or till a bed is arranged in the hospital.
+            
+            For applying for an admission in a government and government requisitioned hospitals, you may fill online registration form for the admission.<br>
+            <b>For admission in hospitals, you must have a CoVID positive report applicable as per recent protocol ordered by health department ready in your hand and the mobile number which was provided at the time of conducting RT PCR tests.</b>
+        </p>
+    </div>
+<!--Third Division-->
+    <div class="formdiv">
+    <h2><u>APPLICATION FORM</u>:</h2>
+    <h5>&nbsp; Fields marked with (*) are mandatory to fill.</h5>
+    </div>
+
+<!--Forth Division-->
+<form th:object="${abc}" method="post" th:action="@{/save-registrations}" target="_self">
+    <div class="hospdiv">
+        <h4>*Select Hospital:</h4>
+        <label for="Hospitals">Government Only<i>(with Bed)</i></label>
+        <input th:field="*{hospital}" id="hospital" list="Hospitals" placeholder="Not Selected" required>
+            <datalist id="Hospitals">
+                <option value="Asansol District Hospital"><option value="Bankura Medical College and Hospital">     <!--INCOMPLETE-->
+                <option value="Burdwan Medical College and Hospital"><option value="Kolkata Medical College and Hospital">
+                <option value="Malda Medical College and Hospital"><option value="North Bengal Medical College and Hospital">
+            </datalist><br><br>
+        <marquee style="color: red;"><b>!!! Ambulance services from respective Hospitals are currently not available due to high demand for increase in number of Covid-19 cases !!!</b></marquee>
+    </div>
+<!--Fifth Division(cssSametoThird)-->
+    <div class="formdiv">
+<!--Patient Information Fieldset-->
+        <fieldset>
+          <legend>Patient Information:</legend>
+          <label for="fname">*Name:</label>
+          <input type="text" id="name" th:field="*{name}" name="fname" size="40" required><br><br>
+
+          <label for="gender" id="gend">*Gender:</label>
+          <input type="radio" id="gend-male" th:field="*{gender}" name="gender-male" value="male">
+          <label for="male">Male</label>
+          <input type="radio" id="gend-female" name="gender-female" value="female" th:field="*{gender}">
+          <label for="female">Female</label>
+          <input type="radio" id="gend-other" name="gender-other" value="other">
+          <label for="other">Other</label><br><br>
+
+          <label for="age">*Age:</label>
+          <input type="number" id="age" name="age" size="3" maxlength="2" min="1" max="90" th:field="*{age}" required><br><br>
+        
+          <label for="birthday">*D.O.B:</label>
+          <input type="date" id="birthday" name="birthday" placeholder="01-Jan-2000" required><br><br>
+
+          
+
+<!--Patient Address Fieldset-->
+        <fieldset>
+            <legend>Current Address:</legend>
+            <label for="Addrs1">*Address Line 1:</label>
+            <input type="text" id="address" th:field="*{address}" name="address" size="40" required><br><br>
+
+            <label for="City">*City:</label>
+            <input type="text" id="city" th:field="*{city}" name="city" required><br><br>
+
+            <label for="Pin">*Postal / Zip Code:</label>
+            <input type="tel" id="Pin" name="pin" th:field="*{pin}" size="6" maxlength="6" placeholder="700xxx" required><br><br>
+
+            <label for="state">*State / Province:</label>
+            <input th:field="*{state}" id="state" list="state" placeholder="--Select--">
+                <datalist id="state">
+                    <option value="Andaman & Nicobar"><option value="Andhra Pradesh">
+                    <option value="Arunachal Pradesh"><option value="Assam">
+                    <option value="Bihar"><option value="Chandigarh">
+                    <option value="Chhattisgarh"><option value="Dadra and Nagar Haveli">
+                    <option value="Daman and Diu"><option value="Delhi">
+                    <option value="Goa"><option value="">
+                    <option value=""><option value="Gujarat">
+                    <option value="Haryana"><option value="Himachal Pradesh">
+                    <option value="Jammu and Kashmir"><option value="Jharkhand">
+                    <option value="Lakshadweep"><option value="Madhya Pradesh">
+                    <option value="Maharashtra"><option value="Manipur">
+                    <option value="Meghalaya"><option value="Mizoram">
+                    <option value="Nagaland"><option value="Orissa">
+                    <option value="Pondicherry"><option value="Punjab">
+                    <option value="Rajasthan"><option value="Sikkim">
+                    <option value="Tamil Nadu"><option value="Telangana">
+                    <option value="Tripura"><option value="Uttarakhand">
+                    <option value="Uttar Pradesh"><option value="West Bengal">
+                        
+                </datalist>
+        </fieldset><br>
+
+<!--Patient & Family Contact Fieldset-->        
+        <fieldset>
+            <legend>Contact Information:</legend>
+            <label for="Mobile1">*Mobile <i>(Home)</i> : </label>
+            <input type="number" id="mobileNumber" th:field="*{mobileNumber}" name="Mobile1" size="16" maxlength="10" placeholder="type only 10 digit no." required><br><br>
+
+            <label for="Email">Email <i>(optional)</i> : </label>
+            <input type="email" id="mail" name="email" th:field="*{email}" placeholder="xyz@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
+
+            <h4>*<u>Patient Family Member Details:</u></h4>
+            <label for="Ffname">Name:</label>
+            <input type="text" id="familyMemberName" th:field="*{familyMemberName}" name="Ffname" size="40" required><br><br>
+            
+            <label for="blood_relation">Relationship:</label>
+            <input list="Relation" placeholder="Not Selected" th:field="*{familyMemberRelationship}">
+                <datalist id="Relation">
+                    <option value="Son"><option value="Daughter">
+                    <option value="Father"><option value="Mother">
+                    <option value="Spouse"><option value="Sister">
+                    <option value="Brother"><option value="Others">
+                </datalist><br><br>
+            <label for="Mobile2">Mobile: </label>
+            <input type="number" id="familyMemberContact" th:field="*{familyMemberContact}" name="Mobile2" size="16" maxlength="10" placeholder="type only 10 digit no." required><br>
+        </fieldset><br>
+
+<!--Patient Health Information Fieldset-->
+        <fieldset>
+            <legend>Additional Information:</legend>
+            <label for="covidreport" id="Creport">*RT-PCR Report:</label>
+            <input type="radio" id="pos" th:field="*{rtpcrReport}" name="covidreport" value="Positive" checked>
+            <label for="pos">Positive</label>
+            <input type="radio" id="neg" th:field="*{rtpcrReport}" name="covidreport" value="Negative" disabled>
+            <label for="neg">Negative</label><br><br>
+
+            <label for="spO2">*Blood Oxygen Level:</label>
+            <input type="number" id="oxygenLevel" th:field="*{oxygenLevel}" name="BOL" size="3" maxlength="3" min="40" max="110" required><br><br>
+
+            
+            <label for="Odis1">Other Medical Problems: </label>
+            <input list="Diseases1" placeholder="Not Applicable" th:field="*{otherMedicalProblems}">
+                <datalist id="Diseases1">
+                    <option value="Not Applicable">
+                    <option value="Lung Problems(Asthma)"><option value="Diabetes & obesity">
+                    <option value="Heart disease"><option value="Chronic Kidney or Liver">
+                    <option value="Down syndrome"><option value="Cancer">
+                </datalist><br><br>
+            <label for="Comment">Any Symptoms/Comments:</label>
+            <input style="height: 50px; width: 250px; font-size: 13pt;" type="text" id="symptoms" th:field="*{symptoms}" name="Comment"><br>
+        </fieldset>   
+    
+<!--End of Form & Fifth Division-->
+
+<!--Sixth Division-----Submission Spot onclick="alert('Are You Sure you want to Submit')" -->
+    <div class="submission">
+        <input type="hidden" id="Pid" name="PatientId" value="Covid0001">
+        <input type="submit" value="Submit" style="background-color: rgb(143, 235, 6); ; width: 100px; height: 30px; cursor: pointer;"> &nbsp;
+        <input type="reset" onclick="alert('Are you Sure you want to Reset Data?')" value="Reset" style="background-color: rgb(252, 93, 93); width: 100px; height: 30px; cursor: pointer;">
+    </div>
+    </form><br>
+    </div>
+
+<!--Seventh Division--Copiright-->
+    <div class="ending">
+        <p>&copy;Copyright <strong>FIEM Design Lab</strong>. All Rights Reserved
+            <br>
+        Designed by Group-1(CSE).
+        <p>
+    </div>
+    
+</body>
 </html>

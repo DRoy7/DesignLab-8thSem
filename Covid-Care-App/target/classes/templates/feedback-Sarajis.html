@@ -9,7 +9,7 @@
     <h1>Feedback Form</h1>
     <div id="output"></div>
     <div class="boxed">
-        <form onsubmit="return show()">
+        <form onsubmit="return show()" action="/home" method="get">
             <p style="display: inline;padding-left: 10px;font-size: 25px;">First Name :</p>
             <input type="text" name="fname" style="margin-left: 90px;padding-left: 5px; "id="fname" onclick="flush1()"> 
             <p style="display: inline;font-size: 12px;color: red;"id ="falert"></p><br>
@@ -37,7 +37,7 @@
             <p style="display: inline;font-size: 12px;color: red;" id = "halert"></p><br>
             <p style="margin-top: 0px;padding-left: 10px;margin-top: 5px;font-size:25px;">Feedback:</p>
             <div class="feedback">
-                <textarea name="fb" id="feedback" cols="42" rows="4" onclick="flush5()"></textarea>
+                <textarea name="desc" id="feedback" cols="42" rows="4" onclick="flush5()"></textarea>
                 <p style="display: inline;font-size: 12px;color: red;" id = "fbalert"></p><br>
             </div>
             <div id="sub">
@@ -69,8 +69,8 @@
             display:flex;
             border: 3px solid black;
             text-align: left;
-            margin-left: 500px;
-            margin-right: 500px;
+            margin-left: 350px;
+            margin-right: 350px;
             margin-top: 170px;
             padding-top: 15px;
             font-family: cursive;

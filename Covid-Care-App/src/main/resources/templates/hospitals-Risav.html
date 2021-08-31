@@ -36,7 +36,7 @@
 		<marquee style="color:#0000ff;font-size:170%;"><b>!!! Ambulance services from respective Hospitals are currently not available due to high demand for increase in number of Covid-19 cases !!!</b></marquee>
     <!-- Register button-->
     <div class="mx-5">
-      <a href="/register" class="mx-5"><button class="btn btn-danger btn-lg mx-3"><b> Register for Hospital </b> </button></a>
+      <a href="/registrations" class="mx-5"><button class="btn btn-danger btn-lg mx-3"><b> Register for Hospital </b> </button></a>
       <a href="/home" class="mx-5"><button class="btn btn-warning btn-lg buttons mx-3"><b> Back to Home </b> </button></a>
     </div>
     <!-- Hospital table-->
@@ -46,8 +46,6 @@
         <thead>
           <tr style="background-color:#80ff00;;font-size:120%;" >
             <th>Name of Hospital</th>
-            <th>State</th>
-            <th>District</th>
             <th>No.of Covid Beds</th>
             <th>Contact No</th>
             <th>Address</th>
@@ -59,8 +57,6 @@
           </tr>
           <tr th:each="Hospital : ${hospitals}">
             <td th:text="${Hospital.name}">Name</td>
-            <td th:text="${Hospital.state}">State</td>
-            <td th:text="${Hospital.district}">District</td>
             <td th:text="${Hospital.beds}">Beds</td>
             <td th:text="${Hospital.contactNumber}">Contact No</td>
             <td th:text="${Hospital.address}">Address</td>
